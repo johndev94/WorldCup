@@ -2,12 +2,10 @@ import React, { useEffect, useState } from 'react';
 import $ from 'jquery';
 
 const Venues: React.FC = () => {
-    // State to store the data
 
     interface Venue {
-        id: number; // or string, depending on your data
+        id: number; 
         name: string;
-        // include other properties that a venue might have
     }
     const [venues, setVenues] = useState<Venue[]>([]);
 
@@ -26,7 +24,6 @@ const Venues: React.FC = () => {
                     <tr>
                         <th>ID</th>
                         <th>Name</th>
-                        {/* Add other table headers as needed */}
                     </tr>
                 </thead>
                 <tbody>
@@ -34,7 +31,6 @@ const Venues: React.FC = () => {
                         <tr key={index}>
                             <td>{index + 1}</td>
                             <td>{venue.name}</td>
-                            {/* Add other table cells as needed */}
                         </tr>
                     ))}
                 </tbody>

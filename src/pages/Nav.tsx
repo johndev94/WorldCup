@@ -11,7 +11,7 @@ function Nav() {
                 <Link to="/teams">Teams</Link> |
                 <Link to="/players">Players</Link>
             </nav>
-            <hr></hr>
+            <hr />
             <br />
         </>
     )
