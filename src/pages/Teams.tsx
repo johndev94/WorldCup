@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import $ from 'jquery';
+import axios from 'axios';
 
 
 interface TeamsPool {
@@ -12,10 +13,15 @@ const Teams: React.FC = () => {
     const [teams, setTeams] = useState<TeamsPool[]>([]);
 
     useEffect(() => {
-        const url = `http://localhost:3000/teamPools`;
-        $.get(url, function (data: TeamsPool[]) {
-            setTeams(data);
-        }, 'json');
+        axios.get<TeamsPool[]>('http://localhost:3000/teamPools')
+            .then((response) => {
+                console.log(response.data);
+                setTeams(response.data);
+            })
+            //catches errors
+            .catch((error) => {
+                console.log(error);
+            });
     }, []);
 
     return (
