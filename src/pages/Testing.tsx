@@ -10,6 +10,8 @@ import getCurrentTime from '../components/GetTime';
 import Dropdown from '../components/Dropdown';
 import Table from '../components/Table';
 import Stopwatch from '../components/Stopwatch';
+import UserTable from '../components/UserTableAxios';
+import UserForm from '../components/UserForm';
 
 const Testing: React.FC = () => {
     // FOR DROPDOWN
@@ -18,12 +20,17 @@ const Testing: React.FC = () => {
     return (
         <div>
             <h1><u>Testing</u></h1>
-            <Dropdown options={dropdownOptions} />
-            <Table/>
-            <Stopwatch/>
 
-            
-            <Message name="john" time={getCurrentTime()} message="Hi" />
+            <UserForm />
+
+            {/* <UserTable />
+
+            <Dropdown options={dropdownOptions} />
+            <Table />
+            <Stopwatch />
+
+
+            <Message name="john" time={getCurrentTime()} message="Hi" /> */}
         </div>
     );
 };

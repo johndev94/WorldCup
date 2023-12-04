@@ -55,7 +55,7 @@ app.route('/players')
 app.route('/team/:id?')
   .get(function (req, res) {
     res.status(200);
-    res.send(`GET /team/${req.params.id} received.`);
+    model.getTeam(req, res);
     console.log(req.params.id);
   })
   .post(function (req, res) { // add
