@@ -55,7 +55,7 @@ const GetRoutes: React.FC = () => {
                     <td>Get teams</td><td><a href="http://localhost:3000/teams">/teams</a></td><td><button className="btn btn-primary" id="teamsBtn">Get</button></td>
                 </tr>
                 <tr>
-                    <td>Get pool teams</td><td><a href="http://localhost:3000/teams/a">/teams/A</a></td><td><button className="btn btn-primary" id="poolTeamsBtn">Get</button></td>
+                    <td>Get pool teams</td><td><a href="http://localhost:3000/teams/A">/teams/A</a></td><td><button className="btn btn-primary" id="poolTeamsBtn">Get</button></td>
                 </tr>
                 <tr>
                     <td>Get players</td><td><a href="http://localhost:3000/players">/players</a></td><td><button className="btn btn-primary" id="playersBtn">Get</button></td>

@@ -21,6 +21,17 @@ connection.connect(function (err) {
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 // GET /teams
+exports.getTeams1 = function (req, res) {
+
+    connection.query(`SELECT * FROM teams`, function (err, rows, fields) {
+        if (err) throw err;
+
+        res.status(200);  // OK
+        res.send(JSON.stringify(rows));
+    });
+}
+
+
 exports.getVenues = function (req, res) {
 
     connection.query(`SELECT * FROM venues ORDER by name`, function (err, rows, fields) {
@@ -34,14 +45,24 @@ exports.getVenues = function (req, res) {
 
 // GET /teams
 exports.getTeams = function (req, res) {
+    let query;
 
-    connection.query(`SELECT * FROM teams`, function (err, rows, fields) {
+    if (req.params.id && typeof req.params.id === 'string') {
+        const poolId = req.params.id; // Directly using the input without sanitization
+        query = `SELECT id, pools.team_name as name, pools.pool FROM pools, teams WHERE teams.name = pools.team_name AND pool = "${poolId}" ORDER BY teams.name`;
+    } else {
+        // If req.params.id is not provided or invalid, select all teams
+        query = 'SELECT * FROM teams';
+    }
+
+    // Execute the query
+    connection.query(query, function (err, rows) {
         if (err) throw err;
 
         res.status(200);  // OK
         res.send(JSON.stringify(rows));
     });
-}
+};
 
 exports.getPlayers = function (req, res) {
 

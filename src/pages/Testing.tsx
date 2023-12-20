@@ -22,7 +22,7 @@ const Testing: React.FC = () => {
             <h1><u>Testing</u></h1>
 
             <UserForm />
-
+            <ListGroup />
             {/* <UserTable />
 
             <Dropdown options={dropdownOptions} />

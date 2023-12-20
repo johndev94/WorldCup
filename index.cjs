@@ -6,7 +6,7 @@ var model = require('./model/db.cjs');  //
 var app = express();
 
 app.use(cors({
-  origin: 'http://127.0.0.1:5173'
+  origin: 'http://127.0.0.1:5176'
 }));
 
 // serves files in public folder
@@ -34,13 +34,19 @@ app.route('/teamPools/')
   })
 
 // REST API /teams GET route
-app.route('/teams/')
+app.route('/teams/:id?')
   .get(function (req, res) {
     res.status(200);
     model.getTeams(req, res);
     console.log(req.params.id);
   })
 
+app.route('/teams/')
+  .get(function (req, res) {
+    res.status(200);
+    model.getTeams1(req, res);
+    console.log(req.params.id);
+  })
 // Get players
 app.route('/players')
   .get(function (req, res) {

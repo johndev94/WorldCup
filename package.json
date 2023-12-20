@@ -15,6 +15,7 @@
     "express": "^4.18.2",
     "jquery": "^3.7.1",
     "mysql": "^2.18.1",
+    "nodeman": "^1.1.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.20.0"
@@ -24,6 +25,7 @@
     "@types/react": "^18.0.27",
     "@types/react-dom": "^18.0.10",
     "@vitejs/plugin-react": "^3.1.0",
+    "nodemon": "^3.0.2",
     "typescript": "^4.9.3",
     "vite": "^4.1.0"
   }

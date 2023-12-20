@@ -7,6 +7,7 @@ import Venues from './pages/Venues';
 import NotFoundPage from './pages/NotFound';
 import Nav from './pages/Nav';
 import Testing from './pages/Testing';
+import PoolDetails from './pages/PoolDetails';
 
 
 
@@ -17,10 +18,11 @@ const App: React.FC = () => {
       <div>
         <Nav />
         <Routes>
-          <Route path="/" element={<Testing />} />
+          <Route path="/" element={<GetRoutes />} />
           <Route path="/venues" element={<Venues />} />
           <Route path="/teams" element={<Teams />} />
           <Route path="/players" element={<Players />} />
+          <Route path="/pool/:poolId" element={<PoolDetails />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>

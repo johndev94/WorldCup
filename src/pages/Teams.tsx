@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import $ from 'jquery';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 
 interface TeamsPool {
@@ -28,20 +29,15 @@ const Teams: React.FC = () => {
         <div>
             <h1>Teams</h1>
             <table className="table">
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Name</th>
-                        <th>Pool</th>
-                    </tr>
-                </thead>
+                {/* ... table headers ... */}
                 <tbody>
-                    {teams.map((team, index) => (
-                        <tr key={team.id}> {/* Unique id for row*/}
-                            <td><img src={`/icons/${team.id}.png`} width="20px"></img></td>
+                    {teams.map((team) => (
+                        <tr key={team.id}>
+                            <td><img src={`/icons/${team.id}.png`} width="20px" alt={team.name} /></td>
                             <td>{team.name}</td>
-                            <td>{team.pool}</td>
-                            <td></td>
+                            <td>
+                                <Link to={`/pool/${team.pool}`}>{team.pool}</Link>
+                            </td>
                         </tr>
                     ))}
                 </tbody>
