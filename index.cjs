@@ -55,6 +55,14 @@ app.route('/players')
     console.log(req.params.id);
   })
 
+app.route('/playersTeams')
+  .get(function (req, res) {
+    res.status(200);
+    model.getPlayersTeams(req, res);
+    console.log(req.params.id);
+  })
+
+
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 // setup REST API /team route VERBS - GET, POST, PUT, DELETE

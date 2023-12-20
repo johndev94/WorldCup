@@ -31,6 +31,16 @@ exports.getTeams1 = function (req, res) {
     });
 }
 
+exports.getPlayersTeams = function (req, res) {
+
+    connection.query(`SELECT players.id as pId, players.team_id as ptId, teams.id as tId, players.name as pname, teams.name as tname FROM players, teams WHERE players.team_id = teams.id`, function (err, rows, fields) {
+        if (err) throw err;
+
+        res.status(200);  // OK
+        res.send(JSON.stringify(rows));
+    });
+}
+
 
 exports.getVenues = function (req, res) {
 
