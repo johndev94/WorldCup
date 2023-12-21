@@ -6,7 +6,7 @@ var model = require('./model/db.cjs');  //
 var app = express();
 
 app.use(cors({
-  origin: 'http://127.0.0.1:5176'
+  origin: 'http://127.0.0.1:5174'
 }));
 
 // serves files in public folder
@@ -17,6 +17,14 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 
 ///////////////////////////////////////////////////////////////////////////////////////////
+
+// Get results
+app.route('/results/')
+  .get(function (req, res) {
+    res.status(200);
+    model.getResults(req, res);
+    console.log(req.params.id);
+  })
 
 // Get venues
 app.route('/venues/')

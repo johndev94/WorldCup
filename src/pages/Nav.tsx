@@ -10,7 +10,7 @@ function Nav() {
                 <Link to="/venues">Venues</Link> | 
                 <Link to="/teams">Teams</Link> | 
                 <Link to="/players">Players</Link> | 
-                <Link to="/players">Results</Link> | 
+                <Link to="/results">Results</Link> | 
                 <Link to="/players">Results By Date</Link> | 
                 <Link to="/players">Pools</Link> | 
                 <Link to="/players">Player Stats</Link> | 

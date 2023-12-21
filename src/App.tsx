@@ -8,6 +8,7 @@ import NotFoundPage from './pages/NotFound';
 import Nav from './pages/Nav';
 import Testing from './pages/Testing';
 import PoolDetails from './pages/PoolDetails';
+import Results from './pages/Results';
 
 
 
@@ -23,6 +24,7 @@ const App: React.FC = () => {
           <Route path="/teams" element={<Teams />} />
           <Route path="/players" element={<Players />} />
           <Route path="/pool/:poolId" element={<PoolDetails />} />
+          <Route path="/results" element={<Results />} />
           <Route path="*" element={<NotFoundPage />} />
         </Routes>
       </div>

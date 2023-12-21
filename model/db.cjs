@@ -20,6 +20,15 @@ connection.connect(function (err) {
 
 ///////////////////////////////////////////////////////////////////////////////////////////
 
+exports.getResults = function (req, res) {
+
+    connection.query(`SELECT * FROM results`, function (err, rows, fields) {
+        if (err) throw err;
+
+        res.status(200);  // OK
+        res.send(JSON.stringify(rows));
+    });
+}
 // GET /teams
 exports.getTeams1 = function (req, res) {
 
