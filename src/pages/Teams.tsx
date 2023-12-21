@@ -19,7 +19,6 @@ const Teams: React.FC = () => {
                 console.log(response.data);
                 setTeams(response.data);
             })
-            //catches errors
             .catch((error) => {
                 console.log(error);
             });
@@ -29,7 +28,6 @@ const Teams: React.FC = () => {
         <div>
             <h1>Teams</h1>
             <table className="table">
-                {/* ... table headers ... */}
                 <tbody>
                     {teams.map((team) => (
                         <tr key={team.id}>

@@ -19,12 +19,20 @@ app.use(bodyParser.urlencoded({ extended: false }));
 ///////////////////////////////////////////////////////////////////////////////////////////
 
 // Get results
-app.route('/results/')
+app.route('/results/:id?/:teamName?')
   .get(function (req, res) {
     res.status(200);
     model.getResults(req, res);
     console.log(req.params.id);
   })
+
+  app.route('/resultsByDate/:date?')
+  .get(function (req, res) {
+    res.status(200);
+    model.getResultsByDate(req, res);
+    console.log(req.params.id);
+  })
+
 
 // Get venues
 app.route('/venues/')

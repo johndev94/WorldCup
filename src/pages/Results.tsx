@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 interface Result {
   date: string;
@@ -10,6 +11,8 @@ interface Result {
   team1_name: string;
   team2_name: string;
   venue_name: string;
+  team1_score: number;
+  team2_score: number;
 }
 
 const Results: React.FC = () => {
@@ -22,7 +25,6 @@ const Results: React.FC = () => {
       .get<Result[]>("http://localhost:3000/results")
       .then((response) => {
         setResults(response.data);
-
 
         const uniqueStages = Array.from(
           new Set(response.data.map((r) => r.stage))
@@ -59,6 +61,7 @@ const Results: React.FC = () => {
             <th>Date</th>
             <th>Stage</th>
             <th>Team</th>
+            <th></th>
             <th>Team</th>
             <th>Venue</th>
           </tr>
@@ -69,20 +72,31 @@ const Results: React.FC = () => {
               <td>{result.date}</td>
               <td>{result.stage}</td>
               <td>
-                <img
-                  src={`/icons/${result.team1_id}.png`}
-                  width="20px"
-                  alt={result.team1_name}
-                />
-                {result.team1_name}
+                <Link
+                  to={`/resultsByTeam/${result.team1_id}/${result.team1_name}`}
+                >
+                  <img
+                    src={`/icons/${result.team1_id}.png`}
+                    width="20px"
+                    alt={result.team1_name}
+                  />
+                  {result.team1_name}
+                </Link>
               </td>
               <td>
-                <img
-                  src={`/icons/${result.team2_id}.png`}
-                  width="20px"
-                  alt={result.team2_name}
-                />
-                {result.team2_name}
+                {result.team1_score}-{result.team2_score}
+              </td>
+              <td>
+                <Link
+                  to={`/resultsByTeam/${result.team2_id}/${result.team1_name}`}
+                >
+                  <img
+                    src={`/icons/${result.team2_id}.png`}
+                    width="20px"
+                    alt={result.team2_name}
+                  />
+                  {result.team2_name}
+                </Link>
               </td>
               <td>{result.venue_name}</td>
             </tr>

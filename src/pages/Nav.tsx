@@ -11,10 +11,10 @@ function Nav() {
                 <Link to="/teams">Teams</Link> | 
                 <Link to="/players">Players</Link> | 
                 <Link to="/results">Results</Link> | 
-                <Link to="/players">Results By Date</Link> | 
-                <Link to="/players">Pools</Link> | 
-                <Link to="/players">Player Stats</Link> | 
-                <Link to="/players">Login</Link> | 
+                <Link to="/resultsByDate">Results By Date</Link> | 
+                <Link to="/pools">Pools</Link> | 
+                <Link to="/playerStats">Player Stats</Link> | 
+                <Link to="/login">Login</Link> | 
             </nav>
             <hr />
             <br />

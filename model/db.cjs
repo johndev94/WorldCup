@@ -19,16 +19,37 @@ connection.connect(function (err) {
 });
 
 ///////////////////////////////////////////////////////////////////////////////////////////
-
 exports.getResults = function (req, res) {
+    let query;
 
-    connection.query(`SELECT * FROM results`, function (err, rows, fields) {
+    if (req.params.id) {
+        const teamId = req.params.id; 
+        query = `SELECT * FROM results WHERE team1_id = ${teamId} OR team2_id = ${teamId} order by date`;
+    } else {
+        // If req.params.id is not provided select all teams
+        query = 'SELECT * FROM results';
+    }
+
+    // Execute the query
+    connection.query(query, function (err, rows) {
+        if (err) throw err;
+
+        res.status(200);  // OK
+        res.send(JSON.stringify(rows));
+    });
+};
+
+exports.getResultsByDate = function (req, res) {
+
+    const date = req.params.date;
+    connection.query(`SELECT * FROM results WHERE date ="${date}"`, function (err, rows, fields) {
         if (err) throw err;
 
         res.status(200);  // OK
         res.send(JSON.stringify(rows));
     });
 }
+
 // GET /teams
 exports.getTeams1 = function (req, res) {
 
