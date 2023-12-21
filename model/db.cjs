@@ -50,6 +50,26 @@ exports.getResultsByDate = function (req, res) {
     });
 }
 
+exports.getPlayerPoints = function (req, res) {
+
+    connection.query(`SELECT * FROM player_points `, function (err, rows, fields) {
+        if (err) throw err;
+
+        res.status(200);  // OK
+        res.send(JSON.stringify(rows));
+    });
+}
+
+exports.getPlayerTackles = function (req, res) {
+
+    connection.query(`SELECT * FROM player_tackles `, function (err, rows, fields) {
+        if (err) throw err;
+
+        res.status(200);  // OK
+        res.send(JSON.stringify(rows));
+    });
+}
+
 // GET /teams
 exports.getTeams1 = function (req, res) {
 

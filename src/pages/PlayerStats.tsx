@@ -2,83 +2,81 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 interface Player {
-  tId: number;
-  pId: number;
-  pname: string;
-  tname: string;
+  player_id: number;
+  player_name: string;
+  team_name: string;
+  statValue: number;
+  points: number;
+  tackles: number; // Points or Tackles value
 }
 
 const PlayerStats: React.FC = () => {
   const [players, setPlayers] = useState<Player[]>([]);
-  const [uniqueTeams, setUniqueTeams] = useState<string[]>([]);
-  const [selectedTeam, setSelectedTeam] = useState<string>("");
+  const [statType, setStatType] = useState<string>("points"); // "points" or "tackles"
 
   useEffect(() => {
+    const endpoint = statType === "points" ? "/playerPoints" : "/playerTackles";
     axios
-      .get<Player[]>("http://localhost:3000/playersTeams")
+      .get<Player[]>(`http://localhost:3000${endpoint}`)
       .then((response) => {
-        setPlayers(response.data);
-        const teamNames: string[] = response.data.map((player) => player.tname);
-        const uniqueTeamSet = new Set(teamNames);
-        setUniqueTeams(Array.from(uniqueTeamSet));
+        const mappedData = response.data.map((item) => ({
+          player_id: item.player_id,
+          player_name: item.player_name,
+          team_name: item.team_name,
+          points: item.points,
+          tackles: item.tackles,
+          statValue: statType === "points" ? item.points : item.tackles,
+        }));
+        setPlayers(mappedData);
       })
       .catch((error) => {
-        console.log(error);
+        console.error(error);
       });
-  }, []);
+  }, [statType]);
+
+  const handleStatTypeChange = (
+    event: React.ChangeEvent<HTMLSelectElement>
+  ) => {
+    setStatType(event.target.value);
+  };
 
   return (
     <div>
-      <h1>Players</h1>
+      <h1>Player Stats</h1>
       <hr />
+
       <div>
-        Team:
+        Stat:<br />
         <select
-          value={selectedTeam}
-          onChange={(e) => setSelectedTeam(e.target.value)}
+          id="statTypeSelect"
+          value={statType}
+          onChange={handleStatTypeChange}
         >
-          <option value="">All Teams</option>
-          {uniqueTeams.map((team) => (
-            <option key={team} value={team}>
-              {team}
-            </option>
-          ))}
+          <option value="points">Points</option>
+          <option value="tackles">Tackles</option>
         </select>
+        <br />
       </div>
+      <br />
+
       <table className="table">
         <thead>
           <tr>
-            <th></th>
+            <th>#</th>
             <th>Player</th>
             <th>Team</th>
-            <th>Info</th>
+            <th>Points</th>
           </tr>
         </thead>
         <tbody>
-          {players
-            .filter(
-              (player) => selectedTeam === "" || player.tname === selectedTeam
-            )
-            .map((player) => (
-              <tr key={player.pId}>
-                <td>
-                  <img
-                    src={`/icons/${player.tId}.png`}
-                    width="20px"
-                    alt={player.tname}
-                  />
-                </td>
-                <td>{player.pname}</td>
-                <td>{player.tname}</td>
-                <td>
-                  <a
-                    href={`https://www.rugbyworldcup.com/2023/teams/${player.tname}/player/${player.pId}`}
-                  >
-                    Info...
-                  </a>
-                </td>
-              </tr>
-            ))}
+          {players.map((player, index) => (
+            <tr key={player.player_id}>
+              <td>{index + 1}</td>
+              <td>{player.player_name}</td>
+              <td>{player.team_name}</td>
+              <td>{player.statValue}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

@@ -33,6 +33,21 @@ app.route('/results/:id?/:teamName?')
     console.log(req.params.id);
   })
 
+  app.route('/playerTackles')
+  .get(function (req, res) {
+    res.status(200);
+    model.getPlayerTackles(req, res);
+    console.log(req.params.id);
+  })
+
+  app.route('/playerPoints')
+  .get(function (req, res) {
+    res.status(200);
+    model.getPlayerPoints(req, res);
+    console.log(req.params.id);
+  })
+
+
 
 // Get venues
 app.route('/venues/')
